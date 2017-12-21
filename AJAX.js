@@ -1,28 +1,7 @@
-var Util = {}
-
-//function returns a nodelist of elements from the page based on the input
-Util.getEl = function(input){
-	return document.querySelectorAll(input);
-}
-
-//adds an event listener
-Util.addLis = function(ele, event, func){
-	//checks that the element exists
-	if(ele){
-		ele.addEventListener(event, func, false);
-	}
-}
-
-//removes an event listener
-Util.rmvLis = function(ele, event, func){
-	//checks that the element exists
-	if(ele){
-		ele.removeEventListener(event, func, false);
-	}
-}
+var AJAX = {}
 
 //Sends an AJAX request
-Util.sendRequest = function(url, callback, postData, file) {
+AJAX.sendRequest = function(url, callback, postData, file) {
 
     /*SET FILE TO FALSE IF IT IS NOT ALREADY SET.  IF IT IS SET THEN
     IT IS SUPPOSED TO BE TRUE.  IF IT IS SET TO TRUE THAT INDICATES THAT A FILE IS
@@ -32,7 +11,7 @@ Util.sendRequest = function(url, callback, postData, file) {
     }
 
     /*CREATES THE XML OBJECT*/
-    var req = Util.createXMLHttpObject();
+    var req = AJAX.createXMLHttpObject();
 
     /*IF RETURNS FALSE CANCEL OPERATION*/
     if (!req) {
@@ -81,7 +60,7 @@ Util.sendRequest = function(url, callback, postData, file) {
 };
 
 /*DEPENDING ON THE BROWSER RETURN APPROPRIATE REQUEST.*/
-Util.XMLHttpFactories = [
+AJAX.XMLHttpFactories = [
     function() {
         return new XMLHttpRequest();
     },
@@ -97,11 +76,11 @@ Util.XMLHttpFactories = [
 ];
 
 /*THIS METHOD CYCLES THROUGH ALL REQUESTS IN XMLHTTPFACTORIES UNTIL ONE IS FOUND.*/
-Util.createXMLHttpObject = function() {
+AJAX.createXMLHttpObject = function() {
     var xmlhttp = false;
-    for (var i = 0; i < Util.XMLHttpFactories.length; i++) {
+    for (var i = 0; i < AJAX.XMLHttpFactories.length; i++) {
         try {
-            xmlhttp = Util.XMLHttpFactories[i]();
+            xmlhttp = AJAX.XMLHttpFactories[i]();
         } catch (e) {
             continue;
         }
