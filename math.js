@@ -1,5 +1,4 @@
-//returns a random integer between 0 and the specified max value (returns as a string)
-function randomInt(maxVal){
-	var num = Math.random()*maxVal;
-	return num.toFixed();
+//returns a random integer between the specified min and max values
+function randomInt(min, max){
+	return Math.floor(Math.random() * (max - min)) + min;
 }
